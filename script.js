@@ -8,6 +8,8 @@ function computerPlay() {
 
 function game() {
   gameRound = 1;
+  userScore = 0;
+  computerScore = 0;
   
   playRound = (playerSelection, computerSelection) => {
     rock = 'rock';
@@ -20,54 +22,46 @@ function game() {
     playerAnswer = playerSelection.toLowerCase();
     computerAnswer = computerSelection.toLowerCase();
 
-    while(playerAnswer === rock) {
+    if (playerAnswer !== rock && playerAnswer !== paper && playerAnswer !== scissors) {
+      alert('Invalid entry. It\'s Rock, Paper, Scissors!');
+      playRound();
+    }
+
+    if (playerAnswer === rock) {
       if (computerAnswer === rock) {
         console.log('Draw! Play another round.');
-        break;
       } else if (computerAnswer === paper) {
         console.log('You lose! Paper beats Rock.');
-        gameRound++;
-        break;
+        computerScore++;
       } else if (computerAnswer === scissors) {
         console.log('You win! Rock beats Scissors.');
-        gameRound++;
+        userScore++;
       }
-      break;
     }
 
-    while(playerAnswer === paper) {
+    if (playerAnswer === paper) {
       if (computerAnswer === paper) {
         console.log('Draw! Play another round.');
-        break;
       } else if (computerAnswer === scissors) {
         console.log('You lose! Scissors beats Paper.');
-        gameRound++;
-        break;
+        computerScore++;
       } else if (computerAnswer === rock) {
         console.log('You win! Paper beats Rock.');
-        gameRound++;
+        userScore++;
       }
-      break;
     }
 
-    while(playerAnswer === scissors) {
+    if (playerAnswer === scissors) {
       if (computerAnswer === scissors) {
         console.log('Draw! Play another round.');
-        break;
       } else if (computerAnswer === rock) {
         console.log('You lose! Rock beats Scissors.');
-        gameRound++;
-        break;
+        computerScore++;
       } else if (computerAnswer === paper) {
         console.log('You win! Scissors beats Paper.');
-        gameRound++;
+        userScore++;
       }
-      break;
     }
-  }
-
-  if (gameRound < 5) {
-    playRound();
   }
 }
 
