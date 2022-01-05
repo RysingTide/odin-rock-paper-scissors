@@ -84,8 +84,8 @@ function game() {
         gameRound++;
       }
     }
-    checkScore();
     console.log(`Round ${gameRound} | Player score is: ${userScore} | Computer score is: ${computerScore}`);
+    checkScore();
   }
 
   while (gameRound <= 5 && !gameOver) {
