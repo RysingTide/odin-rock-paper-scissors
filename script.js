@@ -1,4 +1,7 @@
-const computerPicks = ['rock', 'paper', 'scissors'];
+const btns = document.querySelectorAll('button');
+const results = document.querySelector('.results');
+
+const computerPicks = ['Rock', 'Paper', 'Scissors'];
 const randomNum = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
 }
@@ -30,7 +33,6 @@ function game() {
   }
 
   playRound = (playerSelection, computerSelection) => {
-    playerSelection = prompt('Rock, Paper, Scissors!', '');
     computerSelection = computerPlay();
 
     playerAnswer = playerSelection.toLowerCase();
@@ -42,14 +44,14 @@ function game() {
 
     if (playerAnswer === rock) {
       if (computerAnswer === rock) {
-        console.log(`It's a draw.`);
+        console.log(`${playerSelection} vs ${computerSelection} - It's a draw.`);
         gameRound++;
       } else if (computerAnswer === paper) {
-        console.log('Paper beats Rock.');
+        console.log(`Computer(${computerSelection}) beats User(${playerSelection}).`);
         computerScore++;
         gameRound++;
       } else if (computerAnswer === scissors) {
-        console.log('Rock beats Scissors.');
+        console.log(`User(${playerSelection}) beats Computer(${computerSelection}).`);
         userScore++;
         gameRound++;
       }
@@ -57,14 +59,14 @@ function game() {
 
     if (playerAnswer === paper) {
       if (computerAnswer === paper) {
-        console.log(`It's a draw.`);
+        console.log(`${playerSelection} vs ${computerSelection} - It's a draw.`);
         gameRound++;
       } else if (computerAnswer === scissors) {
-        console.log('Scissors beats Paper.');
+        console.log(`Computer(${computerSelection}) beats User(${playerSelection}).`);
         computerScore++;
         gameRound++;
       } else if (computerAnswer === rock) {
-        console.log('Paper beats Rock.');
+        console.log(`User(${playerSelection}) beats Computer(${computerSelection}).`);
         userScore++;
         gameRound++;
       }
@@ -72,14 +74,14 @@ function game() {
 
     if (playerAnswer === scissors) {
       if (computerAnswer === scissors) {
-        console.log(`It's a draw.`);
+        console.log(`${playerSelection} vs ${computerSelection} - It's a draw.`);
         gameRound++;
       } else if (computerAnswer === rock) {
-        console.log('Rock beats Scissors.');
+        console.log(`Computer(${computerSelection}) beats User(${playerSelection}).`);
         computerScore++;
         gameRound++;
       } else if (computerAnswer === paper) {
-        console.log('Scissors beats Paper.');
+        console.log(`User(${playerSelection}) beats Computer(${computerSelection}).`);
         userScore++;
         gameRound++;
       }
@@ -88,9 +90,12 @@ function game() {
     checkScore();
   }
 
-  while (gameRound <= 5 && !gameOver) {
-    playRound();
-  }
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      pick = btn.innerText;
+      playRound(pick);
+    });
+  });
 }
 
 game();
