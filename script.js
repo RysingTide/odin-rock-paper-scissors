@@ -19,15 +19,31 @@ function game() {
   paper = 'paper';
   scissors = 'scissors';
 
+  btns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    pick = btn.innerText;
+    playRound(pick);
+    });
+  });
+
   checkScore = () => {
     if (userScore === 3 || (gameRound == 5 && userScore > computerScore)) {
-      console.log('YOU WIN!');
+      let para = document.createElement('p');
+      let node = document.createTextNode('YOU WIN!');
+      para.appendChild(node);
+      results.appendChild(para);
       gameOver = true;
     } else if (computerScore == 3 && (computerScore > userScore)) {
-      console.log('YOU LOSE.');
+      let para = document.createElement('p');
+      let node = document.createTextNode('YOU LOSE.');
+      para.appendChild(node);
+      results.appendChild(para);
       gameOver = true;
     } else if (gameRound == 5 && userScore == computerScore) {
-      console.log(`DRAW.`);
+      let para = document.createElement('p');
+      let node = document.createTextNode('DRAW.');
+      para.appendChild(node);
+      results.appendChild(para);
       gameOver = true;
     }
   }
@@ -44,14 +60,23 @@ function game() {
 
     if (playerAnswer === rock) {
       if (computerAnswer === rock) {
-        console.log(`${playerSelection} vs ${computerSelection} - It's a draw.`);
+        let para = document.createElement('p');
+        let node = document.createTextNode(`${playerSelection} vs ${computerSelection} - It's a draw.`);
+        para.appendChild(node);
+        results.appendChild(para);
         gameRound++;
       } else if (computerAnswer === paper) {
-        console.log(`Computer(${computerSelection}) beats User(${playerSelection}).`);
+        let para = document.createElement('p');
+        let node = document.createTextNode(`Computer(${computerSelection}) beats User(${playerSelection}).`);
+        para.appendChild(node);
+        results.appendChild(para);
         computerScore++;
         gameRound++;
       } else if (computerAnswer === scissors) {
-        console.log(`User(${playerSelection}) beats Computer(${computerSelection}).`);
+        let para = document.createElement('p');
+        let node = document.createTextNode(`User(${playerSelection}) beats Computer(${computerSelection}).`);
+        para.appendChild(node);
+        results.appendChild(para);
         userScore++;
         gameRound++;
       }
@@ -89,13 +114,6 @@ function game() {
     console.log(`Round ${gameRound} | Player score is: ${userScore} | Computer score is: ${computerScore}`);
     checkScore();
   }
-
-  btns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      pick = btn.innerText;
-      playRound(pick);
-    });
-  });
 }
 
 game();
